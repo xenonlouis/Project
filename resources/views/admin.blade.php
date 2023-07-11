@@ -9,19 +9,16 @@
             body {
                 background-color: whitesmoke;
                 margin: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100vh;
                 font-family: 'Gothic', sans-serif;
             }
 
             .title {
                 position: absolute;
-                top: 20px;
-                right: 20px;
+                top: 35px;
+                right: 35px;
                 font-size: 24px;
                 font-weight: bold;
+                cursor: pointer;
             }
 
             .title span {
@@ -31,6 +28,7 @@
             .title em {
                 color: #054594;
                 font-style: italic;
+
             }
 
             .container {
@@ -38,14 +36,18 @@
                 margin: 20px;
             }
 
+
             .search-container {
                 display: flex;
                 align-items: center;
                 margin-bottom: 20px;
+                width: 1000px;
+
             }
 
             .search-input {
                 margin-right: 10px;
+                width: 1000px;
             }
 
             .loading {
@@ -53,6 +55,7 @@
                 text-align: center;
                 margin-top: 5px;
             }
+
 
             .list {
                 background-color: #f2f2f2;
@@ -64,9 +67,10 @@
             }
 
             table {
-                max-width: 100%;
+                max-width: 80%;
                 width: auto;
                 border-collapse: collapse;
+                min-height: 0;
             }
 
             th,
@@ -202,15 +206,19 @@
             .button-container button:hover {
                 background-color: #0069d9;
             }
+
+            .highlight {
+                background-color: yellow;
+            }
         </style>
     </head>
 
 
     <body>
-        <div class="title">
+        <div class="title" onclick="redirectToHome()">
             <span>Data</span> <em>Embassy</em>
         </div>
-        <div class="container">
+        <div class="container" style="margin: 0 auto; max-width: 800px;">
             <div class="list">
                 <div class="search-container">
                     <input type="text" id="search-input" class="search-input" placeholder="Search">
@@ -271,7 +279,7 @@
                             <th>Intitule</th>
                             <th>Tel_fix2</th>
                             <th>Fax</th>
-                            <th>Commentaire</th>
+                            <th>Comment</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -286,7 +294,7 @@
         <!-- Modal form of add button-->
         <div class="modal-overlay" id="add-modal">
             <div class="modal-content">
-                <h2>Add Client</h2>
+                <h2>Add Client</h2> <br>
                 <form method="post" action="/gestion/add_client" class="form">
                     @csrf
                     <div class="form-row">
@@ -366,7 +374,7 @@
         <!-- Modal form of edit button-->
         <div class="modal-overlay" id="edit-modal">
             <div class="modal-content">
-                <h2>Edit Client</h2>
+                <h2>Edit Client</h2> <br>
                 <form id="editClientForm" method="post" action="/gestion/update_client" class="form">
                     @csrf
                     <div class="form-row">
@@ -388,7 +396,7 @@
                     <div class="form-row">
                         <div class="form-column">
                             <label for="editTelFixe">Téléphone Fixe</label>
-                            <input type="tel" name="editTelFixe" id="editTelFixe" required>
+                            <input type="tel" name="editTelFixe" id="editTelFixe" pattern="^05\d{8}$" title="Please enter a valid phone number starting with '05'" required>
 
                             <label for="editTypeProspect">Type Prospect</label>
                             <input type="text" name="editTypeProspect" id="editTypeProspect" required>
@@ -405,7 +413,7 @@
                     <div class="form-row">
                         <div class="form-column">
                             <label for="editTelPortable">Téléphone Portable</label>
-                            <input type="tel" name="editTelPortable" id="editTelPortable" required>
+                            <input type="tel" name="editTelPortable" id="editTelPortable" pattern="^(06|07)\d{8}$" title="Please enter a valid phone number starting with '06' or '07'" required>
 
                             <label for="editEmail">Email</label>
                             <input type="email" name="editEmail" id="editEmail" required>
@@ -421,7 +429,7 @@
                     <div class="form-row">
                         <div class="form-column">
                             <label for="editTelPortable2">Téléphone Portable 2</label>
-                            <input type="tel" name="editTelPortable2" id="editTelPortable2">
+                            <input type="tel" name="editTelPortable2" id="editTelPortable2" pattern="^(06|07)\d{8}$" title="Please enter a valid phone number starting with '06' or '07'">
 
                             <label for="editIntitule">Intitulé</label>
                             <select name="editIntitule" id="editIntitule" required>
@@ -433,7 +441,7 @@
                         </div>
                         <div class="form-column">
                             <label for="editTelFixe2">Téléphone Fixe 2</label>
-                            <input type="tel" name="editTelFixe2" id="editTelFixe2">
+                            <input type="tel" name="editTelFixe2" id="editTelFixe2" pattern="^05\d{8}$" title="Please enter a valid phone number starting with '05'">
 
                             <label for="editCommentaire">Commentaire</label>
                             <textarea name="editCommentaire" id="editCommentaire" rows="4"></textarea>
@@ -448,10 +456,16 @@
 
         <script src="{{ asset('jquery.min.js') }}"></script>
         <script>
+            function redirectToHome() {
+                window.location.href = "{{ route('home') }}";
+            }
+
             $(document).ready(function() {
                 // Get the CSRF token from the meta tag
                 var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                
 
+                
                 // AJAX search function
                 $('#search-input').keyup(function() {
                     var query = $(this).val();
@@ -486,13 +500,13 @@
                                 <td style="width: 100px; font-size: 12px;">${client.Adresse}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Ville}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Pays}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Tel_fix}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Tel_Portable}</td>
+                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix}</span></td>
+                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable}</span></td>
                                 <td style="width: 100px; font-size: 12px;">${client.Email}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Position}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Tel_Portable2}</td>
+                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable2}</span></td>
                                 <td style="width: 100px; font-size: 12px;">${client.Intitulé}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Tel_fix2}</td>
+                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix2}</span></td>
                                 <td style="width: 100px; font-size: 12px;">${client.Fax}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Commentaire}</td>
                                <td>
@@ -517,7 +531,7 @@
                         }
                     });
                 });
-
+                
                 // AJAX delete function
                 $(document).on('click', '.delete-button', function() {
                     var clientId = $(this).data('id');
@@ -606,7 +620,7 @@
                             $('#editEmail').val(clientData.Email);
                             $('#editPosition').val(clientData.Position);
                             $('#editFax').val(clientData.Fax);
-                            $('#editTelPortable2').val(clientData.Tel_portable2);
+                            $('#editTelPortable2').val(clientData.Tel_Portable2);
                             $('#editIntitule').val(clientData.Intitulé);
                             $('#editTelFixe2').val(clientData.Tel_fix2);
                             $('#editCommentaire').val(clientData.Commentaire);

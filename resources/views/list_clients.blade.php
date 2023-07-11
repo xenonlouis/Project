@@ -4,6 +4,7 @@
 
 
 
+    <br> <br> <br> <br>
 
     <head>
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -12,10 +13,6 @@
             body {
                 background-color: whitesmoke;
                 margin: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100vh;
                 font-family: 'Gothic', sans-serif;
             }
 
@@ -25,6 +22,7 @@
                 right: 20px;
                 font-size: 24px;
                 font-weight: bold;
+                cursor: pointer;
             }
 
             .title span {
@@ -45,10 +43,12 @@
                 display: flex;
                 align-items: center;
                 margin-bottom: 20px;
+                width: 1000px;
             }
 
             .search-input {
                 margin-right: 10px;
+                width: 1000px;
             }
 
             .loading {
@@ -99,10 +99,10 @@
     </head>
 
     <body>
-        <div class="title">
+        <div class="title" onclick="redirectToHome()">
             <span>Data</span> <em>Embassy</em>
         </div>
-        <div class="container">
+        <div class="container" style="margin: 0 auto; max-width: 800px;">
             <div class="list">
                 <div class="search-container">
                     <input type="text" id="search-input" class="search-input" placeholder="Search">
@@ -173,6 +173,10 @@
 
         <script src="{{ asset('jquery.min.js') }}"></script>
         <script>
+            function redirectToHome() {
+                window.location.href = "{{ route('home') }}";
+            }
+
             $(document).ready(function() {
                 // Get the CSRF token from the meta tag
                 var csrfToken = $('meta[name="csrf-token"]').attr('content');

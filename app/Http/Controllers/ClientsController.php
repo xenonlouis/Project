@@ -40,6 +40,14 @@ class ClientsController extends Controller
         return view('/list_clients');
     }
 
+    public function employe()
+    {
+        return view('/list_employe');
+    }
+
+
+
+
     public function search(Request $request)
     {
         $query = $request->input('query');
@@ -108,9 +116,19 @@ class ClientsController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
     public function update()
 
-    {   //storing the new updated data and then saving again (not using update() as i had probs with it)
+    {   //storing the new updated data and then saving again (not using update() as i had probs with it hehe)
         $id=request('clientId');
         $client = Clients::where('id', $id)->first();
         $client->Nom = request('editNom');

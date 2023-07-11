@@ -60,7 +60,9 @@
             <br>
             <div class="buttons-container">
                 <button class="button" onclick="window.location.href = '/admin';"> Admnistration </button>
-                <button class="button" onclick="window.location.href = '/gestion/list_clients';"> Autre </button>
+                <button class="button" onclick="window.location.href = '/gestion/list_clients';"> List Clients </button>
+                <button class="button" onclick="window.location.href = '/gestion/list_employe';"> List Employe </button>
+                <button class="button" onclick="window.location.href = '/gestion/Service';"> Service </button>
             </div>
         </div>
     </body>
