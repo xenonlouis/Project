@@ -55,7 +55,7 @@
         <div class="container">
             <div class="title">
                 <br> <br> <br> <br> <br> <br> <br> <br> <br>
-                <img src="/DATA.png" alt="Data Embassy">
+                <img src="./DATA.png" alt="Data Embassy">
             </div>
             <br>
             <div class="buttons-container">

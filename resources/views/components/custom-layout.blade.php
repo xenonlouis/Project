@@ -35,6 +35,7 @@
             </main>
         </div>
     </body>
+    
     <footer class="bg-white shadow text-center py-4">
         <div class="max-w-7xl mx-auto">
             &copy; {{ date('Y') }} Data Embassy. All rights reserved.

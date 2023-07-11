@@ -7,7 +7,7 @@ use App\Models\Clients;
 
 class ClientsController extends Controller
 {
-   public function index (){   return view('origin');}
+   public function index (){   return view('index');}
 
 
 
