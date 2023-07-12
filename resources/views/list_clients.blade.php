@@ -95,6 +95,10 @@
             .search-options label {
                 margin-right: 10px;
             }
+
+            .highlight {
+                background-color: yellow;
+            }
         </style>
     </head>
 
@@ -215,15 +219,16 @@
                                 <td style="width: 100px; font-size: 12px;">${client.Adresse}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Ville}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Pays}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Tel_fix}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Tel_Portable}</td>
+                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix}</span></td>
+                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable}</span></td>
                                 <td style="width: 100px; font-size: 12px;">${client.Email}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Position}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Tel_Portable2}</td>
+                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable2}</span></td>
                                 <td style="width: 100px; font-size: 12px;">${client.Intitulé}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Tel_fix2}</td>
+                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix2}</span></td>
                                 <td style="width: 100px; font-size: 12px;">${client.Fax}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Commentaire}</td>
+
                             </tr>`;
                             });
 

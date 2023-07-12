@@ -14,8 +14,8 @@
 
             .title {
                 position: absolute;
-                top: 35px;
-                right: 35px;
+                top: 20px;
+                right: 20px;
                 font-size: 24px;
                 font-weight: bold;
                 cursor: pointer;
@@ -265,21 +265,15 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>Intitule</th>
                             <th>Nom</th>
                             <th>Prénom</th>
                             <th>Societe</th>
-                            <th>Adresse</th>
-                            <th>Ville</th>
-                            <th>Pays</th>
                             <th>Tel_fix</th>
-                            <th>Tel_Portable</th>
-                            <th>Email</th>
-                            <th>Position</th>
-                            <th>Tel_Portable2</th>
-                            <th>Intitule</th>
                             <th>Tel_fix2</th>
+                            <th>Tel_Portable</th>
+                            <th>Tel_Portable2</th>
                             <th>Fax</th>
-                            <th>Comment</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -298,6 +292,14 @@
                 <form method="post" action="/gestion/add_client" class="form">
                     @csrf
                     <div class="form-row">
+                        <label for="intitule">Intitulé</label>
+                        <select name="intitule" id="intitule" required>
+                            <option value="Mr">Mr</option>
+                            <option value="Mme">Mme</option>
+                            <option value="Mlle">Mlle</option>
+                            <option value="Societe">Societe</option>
+                        </select>
+
                         <div class="form-column">
                             <label for="nom">Nom</label>
                             <input type="text" name="nom" id="nom" required>
@@ -322,8 +324,10 @@
                             <input type="text" name="type_Prospect" id="type_Prospect" required>
                         </div>
                         <div class="form-column">
-                            <label for="ville">Ville</label>
-                            <input type="text" name="ville" id="ville" required>
+                            <label for="tel_portable">Téléphone Portable</label>
+                            <input type="tel" name="tel_portable" id="tel_portable" pattern="^(06|07)\d{8}$" title="Please enter a valid phone number starting with '06' or '07'" required>
+
+
 
 
                             <label for="adresse">Adresse</label>
@@ -332,8 +336,8 @@
                     </div>
                     <div class="form-row">
                         <div class="form-column">
-                            <label for="tel_portable">Téléphone Portable</label>
-                            <input type="tel" name="tel_portable" id="tel_portable" pattern="^(06|07)\d{8}$" title="Please enter a valid phone number starting with '06' or '07'" required>
+                            <label for="ville">Ville</label>
+                            <input type="text" name="ville" id="ville" required>
 
                             <label for="email">Email</label>
                             <input type="email" name="email" id="email" required>
@@ -351,13 +355,7 @@
                             <label for="tel_portable2">Téléphone Portable 2</label>
                             <input type="tel" name="tel_portable2" id="tel_portable2" pattern="^(06|07)\d{8}$" title="Please enter a valid phone number starting with '06' or '07'">
 
-                            <label for="intitule">Intitulé</label>
-                            <select name="intitule" id="intitule" required>
-                                <option value="Mr">Mr</option>
-                                <option value="Mme">Mme</option>
-                                <option value="Mlle">Mlle</option>
-                                <option value="Societe">Societe</option>
-                            </select>
+
                         </div>
                         <div class="form-column">
                             <label for="tel_fix2">Téléphone Fixe 2</label>
@@ -378,7 +376,15 @@
                 <form id="editClientForm" method="post" action="/gestion/update_client" class="form">
                     @csrf
                     <div class="form-row">
+                        <label for="editIntitule">Intitulé</label>
+                        <select name="editIntitule" id="editIntitule" required>
+                            <option value="Mr">Mr</option>
+                            <option value="Mme">Mme</option>
+                            <option value="Mlle">Mlle</option>
+                            <option value="Societe">Societe</option>
+                        </select>
                         <div class="form-column">
+
                             <label for="editNom">Nom</label>
                             <input type="text" name="editNom" id="editNom" required>
 
@@ -402,8 +408,8 @@
                             <input type="text" name="editTypeProspect" id="editTypeProspect" required>
                         </div>
                         <div class="form-column">
-                            <label for="editVille">Ville</label>
-                            <input type="text" name="editVille" id="editVille" required>
+                            <label for="editTelPortable">Téléphone Portable</label>
+                            <input type="tel" name="editTelPortable" id="editTelPortable" pattern="^(06|07)\d{8}$" title="Please enter a valid phone number starting with '06' or '07'" required>
 
 
                             <label for="editAdresse">Adresse</label>
@@ -412,8 +418,9 @@
                     </div>
                     <div class="form-row">
                         <div class="form-column">
-                            <label for="editTelPortable">Téléphone Portable</label>
-                            <input type="tel" name="editTelPortable" id="editTelPortable" pattern="^(06|07)\d{8}$" title="Please enter a valid phone number starting with '06' or '07'" required>
+
+                            <label for="editVille">Ville</label>
+                            <input type="text" name="editVille" id="editVille" required>
 
                             <label for="editEmail">Email</label>
                             <input type="email" name="editEmail" id="editEmail" required>
@@ -431,13 +438,6 @@
                             <label for="editTelPortable2">Téléphone Portable 2</label>
                             <input type="tel" name="editTelPortable2" id="editTelPortable2" pattern="^(06|07)\d{8}$" title="Please enter a valid phone number starting with '06' or '07'">
 
-                            <label for="editIntitule">Intitulé</label>
-                            <select name="editIntitule" id="editIntitule" required>
-                                <option value="Mr">Mr</option>
-                                <option value="Mme">Mme</option>
-                                <option value="Mlle">Mlle</option>
-                                <option value="Societe">Societe</option>
-                            </select>
                         </div>
                         <div class="form-column">
                             <label for="editTelFixe2">Téléphone Fixe 2</label>
@@ -463,9 +463,9 @@
             $(document).ready(function() {
                 // Get the CSRF token from the meta tag
                 var csrfToken = $('meta[name="csrf-token"]').attr('content');
-                
 
-                
+
+
                 // AJAX search function
                 $('#search-input').keyup(function() {
                     var query = $(this).val();
@@ -494,25 +494,19 @@
                             var tbody = '';
                             $.each(response, function(index, client) {
                                 tbody += `<tr>
+                                 <td style="width: 100px; font-size: 12px;">${client.Intitulé}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Nom}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Prénom}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Societe}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Adresse}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Ville}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Pays}</td>
                                 <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix}</span></td>
-                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable}</span></td>
-                                <td style="width: 100px; font-size: 12px;">${client.Email}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Position}</td>
-                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable2}</span></td>
-                                <td style="width: 100px; font-size: 12px;">${client.Intitulé}</td>
                                 <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix2}</span></td>
+                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable}</span></td>
+                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable2}</span></td>
                                 <td style="width: 100px; font-size: 12px;">${client.Fax}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Commentaire}</td>
                                <td>
                                  <div class="button-container">
                                  <button type="button" class="delete-button" data-id="${client.id}">Supprimer</button>
-                                 <button type="button" class="edit-button" id="edit-button" data-id="${client.id}">Modifier</button>
+                                 <button type="button" class="edit-button" id="edit-button" data-id="${client.id}">Consulter/Modifier</button>
                                  </div>
                               </td>
 
@@ -531,7 +525,7 @@
                         }
                     });
                 });
-                
+
                 // AJAX delete function
                 $(document).on('click', '.delete-button', function() {
                     var clientId = $(this).data('id');
