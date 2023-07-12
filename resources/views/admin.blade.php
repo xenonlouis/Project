@@ -210,6 +210,17 @@
             .highlight {
                 background-color: yellow;
             }
+
+            .large-button {
+                padding: 20px 34px;
+                font-size: 40px;
+                width: 80px;
+                height: 30px;
+            }
+
+            .button-spacing {
+                margin: 0 10px;
+            }
         </style>
     </head>
 
@@ -285,10 +296,24 @@
             </div>
         </div>
 
+        <!-- Modal form for confirmation -->
+        <div class="modal-overlay" id="delete-modal">
+            <div class="modal-content">
+                <h2> <b>Confirmer la suppression</b></h2> <br>
+                <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
+                <br>
+                <div class="button-container">
+                    <button id="confirm-delete-btn" class="large-button">Supprimer</button>
+                    <span class="button-spacing"></span> <!-- Add a spacing element -->
+                    <button id="cancel-delete-btn" class="large-button">Annuler</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Modal form of add button-->
         <div class="modal-overlay" id="add-modal">
             <div class="modal-content">
-                <h2>Add Client</h2> <br>
+                <h2><b>Add Client</b></h2> <br>
                 <form method="post" action="/gestion/add_client" class="form">
                     @csrf
                     <div class="form-row">
@@ -372,7 +397,7 @@
         <!-- Modal form of edit button-->
         <div class="modal-overlay" id="edit-modal">
             <div class="modal-content">
-                <h2>Edit Client</h2> <br>
+                <h2> <b>Edit Client </b></h2> <br>
                 <form id="editClientForm" method="post" action="/gestion/update_client" class="form">
                     @csrf
                     <div class="form-row">
@@ -505,7 +530,7 @@
                                 <td style="width: 100px; font-size: 12px;">${client.Fax}</td>
                                <td>
                                  <div class="button-container">
-                                 <button type="button" class="delete-button" data-id="${client.id}">Supprimer</button>
+                                 <button type="button" class="delete-button" data-id="${client.id}" >Supprimer</button>
                                  <button type="button" class="edit-button" id="edit-button" data-id="${client.id}">Consulter/Modifier</button>
                                  </div>
                               </td>
@@ -528,29 +553,52 @@
 
                 // AJAX delete function
                 $(document).on('click', '.delete-button', function() {
+                    // Get the ID of the client to be deleted
                     var clientId = $(this).data('id');
 
-                    $.ajax({
-                        url: "{{ route('clients.delete') }}",
-                        method: "DELETE",
-                        headers: {
-                            'X-CSRF-TOKEN': csrfToken // Add the CSRF token to the request headers
-                        },
-                        data: {
-                            id: clientId
-                        },
-                        dataType: 'json',
-                        success: function(response) {
-                            console.log('Delete response:', response);
+                    // Display the confirmation modal
+                    $('#delete-modal').show();
 
-                            // Refresh the client list after deletion
-                            $('#search-input').trigger('keyup');
-                        },
-                        error: function(xhr, status, error) {
-                            console.log('Error:', xhr.responseText);
-                        }
+                    // Handle the confirm delete button click
+                    $('#confirm-delete-btn').click(function() {
+                        // Make an AJAX request to delete the client
+                        $.ajax({
+                            url: "{{ route('clients.delete') }}",
+                            method: "DELETE",
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken // Add the CSRF token to the request headers
+                            },
+                            data: {
+                                id: clientId
+                            },
+                            dataType: 'json',
+                            success: function(response) {
+                                console.log('Delete response:', response);
+
+                                // Refresh the client list after deletion
+                                $('#search-input').trigger('keyup');
+                            },
+                            error: function(xhr, status, error) {
+                                console.log('Error:', xhr.responseText);
+                            }
+                        });
+
+                        // Hide the confirmation modal after delete action
+                        $('#delete-modal').hide();
+                    });
+
+                    // Handle the cancel delete button click
+                    $('#cancel-delete-btn').click(function() {
+                        // Hide the confirmation modal without performing delete action
+                        $('#delete-modal').hide();
                     });
                 });
+
+
+
+
+
+
 
                 const openModalButton = document.getElementById("open-modal-btn");
                 const modalOverlay1 = document.getElementById("add-modal");

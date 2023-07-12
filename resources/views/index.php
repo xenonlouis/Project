@@ -16,6 +16,25 @@
                 font-family: 'Gothic', sans-serif;
             }
 
+            .title2 {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 24px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .title2 span {
+                color: #fc6434;
+            }
+
+            .title2 em {
+                color: #054594;
+                font-style: italic;
+
+            }
+
             .container {
                 max-width: 800px;
                 margin: 20px;
@@ -52,10 +71,14 @@
     </head>
 
     <body>
+        <div class="title2">
+            <span>Data</span> <em>Embassy</em>
+        </div>
+
         <div class="container">
             <div class="title">
-                <br> <br> <br> <br> <br> <br> 
-                <img src="./DATA.png" alt="Data Embassy">
+                <br> <br> <br> <br> <br> <br>
+                <img src="./DATA3.png" alt="Data Embassy">
             </div>
             <br>
             <div class="buttons-container">
