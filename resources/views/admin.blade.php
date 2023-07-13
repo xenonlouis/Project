@@ -262,7 +262,7 @@
                 <br>
                 <button class="open-modal-btn" id="open-modal-btn">Add Client</button>
                 <br>
-                <h2>Client List</h2>
+                <h2> <b>Client List</b></h2>
                 <br>
                 <table>
                     <thead>

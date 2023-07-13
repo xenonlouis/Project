@@ -4,7 +4,7 @@
 
     <head>
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Employee List</title>
+        <title> <b>Employee List </b></title>
         <style>
             .title {
                 position: absolute;
@@ -78,7 +78,7 @@
         <div class="container">
             <div class="list">
                 <br> <br> <br> <br>
-                <h2>Contact List</h2>
+                <h2> <b>Contact List </b></h2>
                 <br>
                 <table>
                     <thead>

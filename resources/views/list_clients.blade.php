@@ -146,7 +146,7 @@
                     </label>
                 </div>
                 <br>
-                <h2>Client List</h2>
+                <h2> <b>Client List </b></h2>
                 <br>
                 <table>
                     <thead>

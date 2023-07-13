@@ -84,7 +84,7 @@
         </div>
         <div class="container">
             <div class="list">
-                <h2>Employes List</h2>
+                <h2> <b>Employes List </b></h2>
                 <br>
                 <table>
                     <thead>
