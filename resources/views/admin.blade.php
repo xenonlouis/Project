@@ -250,15 +250,6 @@
                     <label>
                         <input type="radio" name="search-option" value="Societe"> Société
                     </label>
-                    <label>
-                        <input type="radio" name="search-option" value="Ville"> Ville
-                    </label>
-                    <label>
-                        <input type="radio" name="search-option" value="Pays"> Pays
-                    </label>
-                    <label>
-                        <input type="radio" name="search-option" value="Position"> Position
-                    </label>
                 </div>
                 <div class="search-type">
                     <label>
