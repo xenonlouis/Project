@@ -7,7 +7,10 @@ use App\Models\Clients;
 
 class ClientsController extends Controller
 {
-   public function index (){   return view('index');}
+    public function index()
+    {
+        return view('index');
+    }
 
 
 
@@ -16,10 +19,8 @@ class ClientsController extends Controller
         $client = new Clients();
         $client->Nom = request('nom');
         $client->Prénom = request('prenom');
-        $client->Societe = request('societe');
         $client->Adresse = request('adresse');
         $client->Ville = request('ville');
-        $client->Pays = request('pays');
         $client->Email = request('email');
         $client->Tel_fix = request('tel_fix');
         $client->Tel_Portable = request('tel_portable');
@@ -29,7 +30,6 @@ class ClientsController extends Controller
         $client->Tel_Fix2 = request('tel_fix2');
         $client->Intitulé = request('intitule');
         $client->Commentaire = request('commentaire');
-        $client->Type_Prospect = request('type_Prospect');
         $client->save();
         return redirect('/admin')->with('msg', 'Client ajouté ! ');
     }
@@ -53,27 +53,25 @@ class ClientsController extends Controller
         $query = $request->input('query');
         $radio = $request->input('searchOption');
         $request_type = $request->input('searchType');
-        
+
         $queryBuilder = Clients::query();
 
         if ($radio !== "all") {
-            if($request_type === "partial"){
-            $queryBuilder->where($radio, 'LIKE', '%' . $query . '%');}
-            else { //$queryBuilder->where($radio, '=', $query);
-                     $queryBuilder->where($radio, 'Like', $query . '%');}
+            if ($request_type === "partial") {
+                $queryBuilder->where($radio, 'LIKE', '%' . $query . '%');
+            } else { //$queryBuilder->where($radio, '=', $query);
+                $queryBuilder->where($radio, 'Like', $query . '%');
+            }
 
 
             $clients = $queryBuilder->get();
             return response()->json($clients);
-
         } else {
-       
+
             $clients = Clients::where('Nom', 'LIKE', '%' . $query . '%')
                 ->orWhere('Prénom', 'LIKE', '%' . $query . '%')
-                ->orWhere('Societe', 'LIKE', '%' . $query . '%')
                 ->orWhere('Adresse', 'LIKE', '%' . $query . '%')
                 ->orWhere('Ville', 'LIKE', '%' . $query . '%')
-                ->orWhere('Pays', 'LIKE', '%' . $query . '%')
                 ->orWhere('Tel_fix', 'LIKE', '%' . $query . '%')
                 ->orWhere('Tel_Portable', 'LIKE', '%' . $query . '%')
                 ->orWhere('Email', 'LIKE', '%' . $query . '%')
@@ -81,9 +79,6 @@ class ClientsController extends Controller
                 ->get();
             return response()->json($clients);
         }
-
-    
-        
     }
 
     public function delete(Request $request)
@@ -129,14 +124,13 @@ class ClientsController extends Controller
     public function update()
 
     {   //storing the new updated data and then saving again (not using update() as i had probs with it hehe)
-        $id=request('clientId');
+        $id = request('clientId');
         $client = Clients::where('id', $id)->first();
         $client->Nom = request('editNom');
         $client->Prénom = request('editPrenom');
         $client->Societe = request('editSociete');
         $client->Adresse = request('editAdresse');
         $client->Ville = request('editVille');
-        $client->Pays = request('editPays');
         $client->Email = request('editEmail');
         $client->Tel_fix = request('editTelFixe');
         $client->Tel_Portable = request('editTelPortable');
@@ -146,18 +140,7 @@ class ClientsController extends Controller
         $client->Tel_Fix2 = request('editTelFixe2');
         $client->Intitulé = request('editIntitule');
         $client->Commentaire = request('editCommentaire');
-        $client->Type_Prospect = request('editTypeProspect');
         $client->save();
         return redirect('/admin')->with('msg', 'Client mis a jour ! ');
     }
-
-
-
-
-
-
-
-
-
-
 }

@@ -22,7 +22,7 @@ Route::get('/', "App\Http\Controllers\ClientsController@index")->name("home");
 
 
 Route::get('/gestion/list_clients', 'App\Http\Controllers\ClientsController@show')->name('list_clients');
-Route::get('/gestion/list_employe', 'App\Http\Controllers\ClientsController@employe')->name('list_clients');
+Route::get('/gestion/list_employe', 'App\Http\Controllers\ClientsController@employe')->name('list_employes');
 Route::post('/gestion/list_employe', 'App\Http\Controllers\employesController@fetch')->name('list_clients.fetch');
 
 

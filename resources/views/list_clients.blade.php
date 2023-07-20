@@ -124,15 +124,11 @@
                     <label>
                         <input type="radio" name="search-option" value="Prénom"> Prénom
                     </label>
-                    <label>
-                        <input type="radio" name="search-option" value="Societe"> Société
-                    </label>
+                    
                     <label>
                         <input type="radio" name="search-option" value="Ville"> Ville
                     </label>
-                    <label>
-                        <input type="radio" name="search-option" value="Pays"> Pays
-                    </label>
+
                     <label>
                         <input type="radio" name="search-option" value="Position"> Position
                     </label>
@@ -153,10 +149,8 @@
                         <tr></tr>
                         <th>Nom</th>
                         <th>Prénom</th>
-                        <th>Societe</th>
                         <th>Adresse</th>
                         <th>Ville</th>
-                        <th>Pays</th>
                         <th>Tel_fix</th>
                         <th>Tel_Portable</th>
                         <th>Email</th>
@@ -215,10 +209,8 @@
                                 tbody += `<tr>
                                 <td style="width: 100px; font-size: 12px;">${client.Nom}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Prénom}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Societe}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Adresse}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Ville}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Pays}</td>
                                 <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix}</span></td>
                                 <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable}</span></td>
                                 <td style="width: 100px; font-size: 12px;">${client.Email}</td>

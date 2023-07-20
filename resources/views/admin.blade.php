@@ -113,7 +113,7 @@
             .modal-content {
                 background-color: #fff;
                 padding: 20px;
-                max-width: 600px;
+                max-width: 800px;
                 margin: 0 auto;
                 margin-top: 10vh;
                 border-radius: 5px;
@@ -134,7 +134,14 @@
             }
 
             .form-column {
-                flex-basis: 50%;
+                flex-basis: 33.33%;
+                margin-bottom: 15px;
+                padding-right: 10px;
+                box-sizing: border-box;
+            }
+
+            .form-column-full {
+                flex-basis: 100%;
                 margin-bottom: 15px;
                 padding-right: 10px;
                 box-sizing: border-box;
@@ -170,10 +177,6 @@
                 font-size: 16px;
             }
 
-            button[type="submit"]:hover {
-                background-color: #45a049;
-            }
-
             button#open-modal-btn {
                 padding: 10px 20px;
                 background-color: #002a77;
@@ -188,11 +191,6 @@
                 background-color: #0069d9;
             }
 
-            .button-container {
-                display: flex;
-                gap: 5px;
-            }
-
             .button-container button {
                 padding: 2px 5px;
                 background-color: #002a77;
@@ -201,10 +199,6 @@
                 border-radius: 4px;
                 cursor: pointer;
                 font-size: 12px;
-            }
-
-            .button-container button:hover {
-                background-color: #0069d9;
             }
 
             .highlight {
@@ -220,6 +214,11 @@
 
             .button-spacing {
                 margin: 0 10px;
+            }
+
+            span.required {
+                color: red;
+                margin-left: 5px;
             }
         </style>
     </head>
@@ -247,9 +246,6 @@
                     <label>
                         <input type="radio" name="search-option" value="Prénom"> Prénom
                     </label>
-                    <label>
-                        <input type="radio" name="search-option" value="Societe"> Société
-                    </label>
                 </div>
                 <div class="search-type">
                     <label>
@@ -270,7 +266,6 @@
                             <th>Intitule</th>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Societe</th>
                             <th>Tel_fix</th>
                             <th>Tel_fix2</th>
                             <th>Tel_Portable</th>
@@ -302,81 +297,77 @@
         </div>
 
         <!-- Modal form of add button-->
+        <!-- Modal form of add button -->
         <div class="modal-overlay" id="add-modal">
             <div class="modal-content">
-                <h2><b>Add Client</b></h2> <br>
-                <form method="post" action="/gestion/add_client" class="form">
+                <h2><b>Add Client</b></h2>
+                <br>
+                <form id="addClientForm" method="post" action="/gestion/add_client" class="form">
                     @csrf
                     <div class="form-row">
-                        <label for="intitule">Intitulé</label>
-                        <select name="intitule" id="intitule" required>
-                            <option value="Mr">Mr</option>
-                            <option value="Mme">Mme</option>
-                            <option value="Mlle">Mlle</option>
-                            <option value="Societe">Societe</option>
-                        </select>
-
                         <div class="form-column">
-                            <label for="nom">Nom</label>
+                            <label for="intitule">Intitulé <span class="required">*</span></label>
+                            <select name="intitule" id="intitule" required>
+                                <option value="Mr">Mr</option>
+                                <option value="Mme">Mme</option>
+                                <option value="Mlle">Mlle</option>
+                                <option value="Societe">Societe</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label for="nom"> Nom <span class="required">*</span></label>
                             <input type="text" name="nom" id="nom" required>
-
-                            <label for="societe">Société</label>
-                            <input type="text" name="societe" id="societe" required>
                         </div>
                         <div class="form-column">
                             <label for="prenom">Prénom</label>
-                            <input type="text" name="prenom" id="prenom" required>
-
-                            <label for="pays">Pays</label>
-                            <input type="text" name="pays" id="pays" required>
+                            <input type="text" name="prenom" id="prenom">
                         </div>
+                        <div class="form-column">
+                            <label for="position">Position</label>
+                            <input type="text" name="position" id="position">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label for="tel_portable">Téléphone Portable</label>
+                            <input type="tel" name="tel_portable" id="tel_portable" pattern="^06\d{2}-\d{2}-\d{2}-\d{2}$" title="Please enter a valid phone number starting with '06' or '07'">
+                        </div>
+                        <div class="form-column">
+                            <label for="tel_portable2">Téléphone Portable 2</label>
+                            <input type="tel" name="tel_portable2" id="tel_portable2" pattern="^06\d{2}-\d{2}-\d{2}-\d{2}$" title="Please enter a valid phone number starting with '06' or '07'">
+                        </div>
+
                     </div>
                     <div class="form-row">
                         <div class="form-column">
                             <label for="tel_fix">Téléphone Fixe</label>
-                            <input type="tel" name="tel_fix" id="tel_fix" pattern="^05\d{8}$" title="Please enter a valid phone number starting with '05'" required>
-
-                            <label for="type_Prospect">Type Prospect</label>
-                            <input type="text" name="type_Prospect" id="type_Prospect" required>
-                        </div>
-                        <div class="form-column">
-                            <label for="tel_portable">Téléphone Portable</label>
-                            <input type="tel" name="tel_portable" id="tel_portable" pattern="^(06|07)\d{8}$" title="Please enter a valid phone number starting with '06' or '07'" required>
-
-
-
-
-                            <label for="adresse">Adresse</label>
-                            <input type="text" name="adresse" id="adresse" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-column">
-                            <label for="ville">Ville</label>
-                            <input type="text" name="ville" id="ville" required>
-
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="email" required>
-                        </div>
-                        <div class="form-column">
-                            <label for="position">Position</label>
-                            <input type="text" name="position" id="position" required>
-
-                            <label for="fax">Fax</label>
-                            <input type="tel" name="fax" id="fax" pattern="^05\d{8}$" title="Please enter a valid phone number starting with '05'">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-column">
-                            <label for="tel_portable2">Téléphone Portable 2</label>
-                            <input type="tel" name="tel_portable2" id="tel_portable2" pattern="^(06|07)\d{8}$" title="Please enter a valid phone number starting with '06' or '07'">
-
-
+                            <input type="tel" name="tel_fix" id="tel_fix" pattern="^05\d{2}-\d{2}-\d{2}-\d{2}$" title="Please enter a valid phone number starting with '05'">
                         </div>
                         <div class="form-column">
                             <label for="tel_fix2">Téléphone Fixe 2</label>
-                            <input type="tel" name="tel_fix2" id="tel_fix2" pattern="^05\d{8}$" title="Please enter a valid phone number starting with '05'">
-
+                            <input type="tel" name="tel_fix2" id="tel_fix2" pattern="^05\d{2}-\d{2}-\d{2}-\d{2}$" title="Please enter a valid phone number starting with '05'">
+                        </div>
+                        <div class="form-column">
+                            <label for="fax">Fax</label>
+                            <input type="tel" name="fax" id="fax" pattern="^05\d{2}-\d{2}-\d{2}-\d{2}$" title="Please enter a valid phone number starting with '05'">
+                        </div>
+                        <div class="form-column" style="flex-basis: 66.66%;">
+                            <label for="adresse">Adresse</label>
+                            <input type="text" name="adresse" id="adresse">
+                        </div>
+                        <div class="form-column">
+                            <label for="ville">Ville</label>
+                            <input type="text" name="ville" id="ville">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email">
+                        </div>
+                        <div class="form-column">
                             <label for="commentaire">Commentaire</label>
                             <textarea name="commentaire" id="commentaire" rows="4"></textarea>
                         </div>
@@ -385,93 +376,142 @@
                 </form>
             </div>
         </div>
-        <!-- Modal form of edit button-->
+
+        <!-- Modal form of edit button -->
         <div class="modal-overlay" id="edit-modal">
             <div class="modal-content">
-                <h2> <b>Edit Client </b></h2> <br>
+                <h2><b>Edit Client</b></h2>
+                <br>
                 <form id="editClientForm" method="post" action="/gestion/update_client" class="form">
                     @csrf
                     <div class="form-row">
-                        <label for="editIntitule">Intitulé</label>
-                        <select name="editIntitule" id="editIntitule" required>
-                            <option value="Mr">Mr</option>
-                            <option value="Mme">Mme</option>
-                            <option value="Mlle">Mlle</option>
-                            <option value="Societe">Societe</option>
-                        </select>
                         <div class="form-column">
-
-                            <label for="editNom">Nom</label>
+                            <label for="editIntitule">Intitulé</label>
+                            <select name="editIntitule" id="editIntitule" required>
+                                <option value="Mr">Mr</option>
+                                <option value="Mme">Mme</option>
+                                <option value="Mlle">Mlle</option>
+                                <option value="Societe">Societe</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label for="editNom"> Nom <span class="required">*</span></label>
                             <input type="text" name="editNom" id="editNom" required>
-
-                            <label for="editSociete">Société</label>
-                            <input type="text" name="editSociete" id="editSociete" required>
                         </div>
                         <div class="form-column">
                             <label for="editPrenom">Prénom</label>
-                            <input type="text" name="editPrenom" id="editPrenom" required>
-
-                            <label for="editPays">Pays</label>
-                            <input type="text" name="editPays" id="editPays" required>
+                            <input type="text" name="editPrenom" id="editPrenom">
+                        </div>
+                        <div class="form-column">
+                            <label for="editPosition">Position</label>
+                            <input type="text" name="editPosition" id="editPosition">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label for="editTelPortable">Téléphone Portable</label>
+                            <input type="tel" name="editTelPortable" id="editTelPortable" pattern="^06\d{2}-\d{2}-\d{2}-\d{2}$" title="Please enter a valid phone number starting with '06' or '07'">
+                        </div>
+                        <div class="form-column">
+                            <label for="editTelPortable2">Téléphone Portable 2</label>
+                            <input type="tel" name="editTelPortable2" id="editTelPortable2" pattern="^06\d{2}-\d{2}-\d{2}-\d{2}$" title="Please enter a valid phone number starting with '06' or '07'">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-column">
                             <label for="editTelFixe">Téléphone Fixe</label>
-                            <input type="tel" name="editTelFixe" id="editTelFixe" pattern="^05\d{8}$" title="Please enter a valid phone number starting with '05'" required>
-
-                            <label for="editTypeProspect">Type Prospect</label>
-                            <input type="text" name="editTypeProspect" id="editTypeProspect" required>
-                        </div>
-                        <div class="form-column">
-                            <label for="editTelPortable">Téléphone Portable</label>
-                            <input type="tel" name="editTelPortable" id="editTelPortable" pattern="^(06|07)\d{8}$" title="Please enter a valid phone number starting with '06' or '07'" required>
-
-
-                            <label for="editAdresse">Adresse</label>
-                            <input type="text" name="editAdresse" id="editAdresse" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-column">
-
-                            <label for="editVille">Ville</label>
-                            <input type="text" name="editVille" id="editVille" required>
-
-                            <label for="editEmail">Email</label>
-                            <input type="email" name="editEmail" id="editEmail" required>
-                        </div>
-                        <div class="form-column">
-                            <label for="editPosition">Position</label>
-                            <input type="text" name="editPosition" id="editPosition" required>
-
-                            <label for="editFax">Fax</label>
-                            <input type="tel" name="editFax" id="editFax">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-column">
-                            <label for="editTelPortable2">Téléphone Portable 2</label>
-                            <input type="tel" name="editTelPortable2" id="editTelPortable2" pattern="^(06|07)\d{8}$" title="Please enter a valid phone number starting with '06' or '07'">
-
+                            <input type="tel" name="editTelFixe" id="editTelFixe" pattern="^05\d{2}-\d{2}-\d{2}-\d{2}$" title="Please enter a valid phone number starting with '05'">
                         </div>
                         <div class="form-column">
                             <label for="editTelFixe2">Téléphone Fixe 2</label>
-                            <input type="tel" name="editTelFixe2" id="editTelFixe2" pattern="^05\d{8}$" title="Please enter a valid phone number starting with '05'">
+                            <input type="tel" name="editTelFixe2" id="editTelFixe2" pattern="^05\d{2}-\d{2}-\d{2}-\d{2}$" title="Please enter a valid phone number starting with '05'">
+                        </div>
+                        <div class="form-column">
+                            <label for="fax">Fax</label>
+                            <input type="tel" name="editFax" id="editFax" pattern="^05\d{2}-\d{2}-\d{2}-\d{2}$" title="Please enter a valid phone number starting with '05'">
+                        </div>
 
+                        <div class="form-column" style="flex-basis: 66.66%;">
+                            <label for="editAdresse">Adresse</label>
+                            <input type="text" name="editAdresse" id="editAdresse">
+                        </div>
+                        <div class="form-column">
+                            <label for="editVille">Ville</label>
+                            <input type="text" name="editVille" id="editVille">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label for="editEmail">Email</label>
+                            <input type="email" name="editEmail" id="editEmail">
+                        </div>
+                        <div class="form-column">
                             <label for="editCommentaire">Commentaire</label>
                             <textarea name="editCommentaire" id="editCommentaire" rows="4"></textarea>
                         </div>
                     </div>
-                    <input type="hidden" id="clientId" name="clientId" />
                     <button type="submit">Update</button>
+                    <input type="hidden" id="clientId" name="clientId" />
                 </form>
             </div>
         </div>
 
 
+
         <script src="{{ asset('jquery.min.js') }}"></script>
         <script>
+            //ensure that at least one number is filled as required elemnts are name and one of the numbers
+            document.addEventListener('DOMContentLoaded', function() {
+                var form = document.querySelector('.form');
+                var telPortable = document.getElementById('tel_portable');
+                var telFix = document.getElementById('tel_fix');
+
+                form.addEventListener('submit', function(event) {
+                    // Check if either telPortable or telFix is filled
+                    if (!telPortable.value && !telFix.value) {
+                        event.preventDefault();
+                        alert('Veuillez remplir au moins l\'un des champs de téléphone.');
+                    }
+                });
+            });
+
+            $(document).ready(function() {
+                // Listen for keydown event on input fields and textarea
+                $('input, select, textarea').keydown(function(event) {
+                    // Check if the Enter key was pressed
+                    if (event.keyCode == 13) {
+                        event.preventDefault(); // Prevent form submission
+
+                        // Get the current input field or textarea and its index
+                        var currentIndex = $('input, select, textarea').index(this);
+
+                        // Find the next input field or textarea
+                        var nextInput = $('input, select, textarea').eq(currentIndex + 1);
+
+                        // Check if the next input field or textarea is within the same form row
+                        if (nextInput.closest('.form-row').is($(this).closest('.form-row'))) {
+                            // Focus on the next input field or textarea
+                            nextInput.focus();
+                        } else {
+                            // Find the first input field or textarea in the next form row
+                            var firstInputInNextRow = $(this).closest('.form-row').next('.form-row').find('input, select, textarea').first();
+
+                            // Focus on the first input field or textarea in the next form row
+                            firstInputInNextRow.focus();
+                        }
+
+                        // Check if the current input field or textarea is the last one
+                        if (currentIndex === $('input, select, textarea').length - 1 || $(this).is('textarea[name="commentaire"]') || $(this).is('textarea[name="editCommentaire"]')) {
+                            // Submit the form
+                            $(this).closest('form').find('button[type="submit"]').click();
+                        }
+                    }
+                });
+            });
+
+            // redirecting to home function(obviously hhh)
             function redirectToHome() {
                 window.location.href = "{{ route('home') }}";
             }
@@ -510,24 +550,23 @@
                             var tbody = '';
                             $.each(response, function(index, client) {
                                 tbody += `<tr>
-                                 <td style="width: 100px; font-size: 12px;">${client.Intitulé}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Nom}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Prénom}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Societe}</td>
-                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix}</span></td>
-                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix2}</span></td>
-                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable}</span></td>
-                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable2}</span></td>
-                                <td style="width: 100px; font-size: 12px;">${client.Fax}</td>
-                               <td>
-                                 <div class="button-container">
-                                 <button type="button" class="delete-button" data-id="${client.id}" >Supprimer</button>
-                                 <button type="button" class="edit-button" id="edit-button" data-id="${client.id}">Consulter/Modifier</button>
-                                 </div>
-                              </td>
+            <td style="width: 100px; font-size: 12px;">${client.Intitulé}</td>
+            <td style="width: 100px; font-size: 12px;">${client.Nom}</td>
+            <td style="width: 100px; font-size: 12px;">${client.Prénom}</td>
+            <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix}</span></td>
+            <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix2}</span></td>
+            <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable}</span></td>
+            <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable2}</span></td>
+            <td style="width: 100px; font-size: 12px;">${client.Fax}</td>
+            <td>
+                <div class="button-container">
+                    <button type="button" class="delete-button" data-id="${client.id}">Supprimer</button>
+                    <button type="button" class="edit-button" id="edit-button" data-id="${client.id}">Consulter/Modifier</button>
+                </div>
+            </td>
 
-                            </tr>
-                            `;
+        </tr>
+        `;
                             });
 
                             $('#client-table').html(tbody);
@@ -672,6 +711,51 @@
                 });
 
             });
+
+            //formating numbers 
+            function formatPhoneNumber(input) {
+
+
+                let value = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+                let formattedValue = '';
+
+                if (value.length > 0) {
+                    formattedValue = value.slice(0, 4);
+                }
+                if (value.length > 4) {
+                    formattedValue += '-' + value.slice(4, 6);
+                }
+                if (value.length > 6) {
+                    formattedValue += '-' + value.slice(6, 8);
+                }
+                if (value.length > 8) {
+                    formattedValue += '-' + value.slice(8, 10);
+                }
+                input.value = formattedValue;
+            }
+
+            $(document).ready(function() {
+                // Trigger formatPhoneNumber for every input of type 'tel'
+                $('input[type="tel"]').each(function() {
+                    formatPhoneNumber(this);
+                });
+
+                // Listen for input changes on 'tel' inputs
+                $('input[type="tel"]').on('input', function(event) {
+                    formatPhoneNumber(this);
+                });
+            });
+
+             function convertToUppercase(input) {
+        input.value = input.value.toUpperCase();
+             }
+
+    $(document).ready(function() {
+        // Find all input elements inside the "add-modal" and "edit-modal" forms
+        $('#add-modal input, #edit-modal input').on('input', function(event) {
+            convertToUppercase(this); // Convert input value to uppercase on input change
+        });
+    });
         </script>
     </body>
 
