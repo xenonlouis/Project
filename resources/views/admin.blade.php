@@ -367,7 +367,7 @@
                             <label for="email">Email</label>
                             <input type="email" name="email" id="email">
                         </div>
-                        <div class="form-column">
+                        <div class="form-column" style="flex-basis: 66.66%;">
                             <label for="commentaire">Commentaire</label>
                             <textarea name="commentaire" id="commentaire" rows="4"></textarea>
                         </div>
@@ -447,7 +447,7 @@
                             <label for="editEmail">Email</label>
                             <input type="email" name="editEmail" id="editEmail">
                         </div>
-                        <div class="form-column">
+                        <div class="form-column" style="flex-basis: 66.66%;">
                             <label for="editCommentaire">Commentaire</label>
                             <textarea name="editCommentaire" id="editCommentaire" rows="4"></textarea>
                         </div>
@@ -746,16 +746,16 @@
                 });
             });
 
-             function convertToUppercase(input) {
-        input.value = input.value.toUpperCase();
-             }
+            function convertToUppercase(input) {
+                input.value = input.value.toUpperCase();
+            }
 
-    $(document).ready(function() {
-        // Find all input elements inside the "add-modal" and "edit-modal" forms
-        $('#add-modal input, #edit-modal input').on('input', function(event) {
-            convertToUppercase(this); // Convert input value to uppercase on input change
-        });
-    });
+            $(document).ready(function() {
+                // Find all input elements inside the "add-modal" and "edit-modal" forms
+                $('#add-modal input, #edit-modal input').on('input', function(event) {
+                    convertToUppercase(this); // Convert input value to uppercase on input change
+                });
+            });
         </script>
     </body>
 
