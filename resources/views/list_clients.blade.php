@@ -99,6 +99,12 @@
             .highlight {
                 background-color: yellow;
             }
+
+            /* CSS for the specific columns with no wrap */
+            #client-table td.nowrap-cell {
+                white-space: nowrap;
+                /* Prevent the content from wrapping */
+            }
         </style>
     </head>
 
@@ -124,7 +130,7 @@
                     <label>
                         <input type="radio" name="search-option" value="Prénom"> Prénom
                     </label>
-                    
+
                     <label>
                         <input type="radio" name="search-option" value="Ville"> Ville
                     </label>
@@ -147,24 +153,26 @@
                 <table>
                     <thead>
                         <tr></tr>
+                        <th>Intitule</th>
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Adresse</th>
+                        <th>Position</th>
                         <th>Ville</th>
                         <th>Tel_fix</th>
-                        <th>Tel_Portable</th>
-                        <th>Email</th>
-                        <th>Position</th>
-                        <th>Tel_Portable2</th>
-                        <th>Intitule</th>
                         <th>Tel_fix2</th>
+                        <th>Tel_Portable</th>
+                        <th>Tel_Portable2</th>
+                        <th>Email</th>
                         <th>Fax</th>
                         <th>Commentaire</th>
                         </tr>
                     </thead>
-                    <tbody id="client-table">
-                        <!-- Client rows will be dynamically added here -->
-                    </tbody>
+                    <div class="table-container">
+                        <tbody id="client-table">
+                            <!-- Client rows will be dynamically added here -->
+                        </tbody>
+                    </div>
                 </table>
             </div>
         </div>
@@ -207,18 +215,18 @@
                             var tbody = '';
                             $.each(response, function(index, client) {
                                 tbody += `<tr>
+                                  <td style="width: 100px; font-size: 12px;">${client.Intitulé}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Nom}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Prénom}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Adresse}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Ville}</td>
-                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix}</span></td>
-                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable}</span></td>
-                                <td style="width: 100px; font-size: 12px;">${client.Email}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Position}</td>
-                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable2}</span></td>
-                                <td style="width: 100px; font-size: 12px;">${client.Intitulé}</td>
-                                <td style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix2}</span></td>
-                                <td style="width: 100px; font-size: 12px;">${client.Fax}</td>
+                                <td style="width: 100px; font-size: 12px;">${client.Ville}</td>
+                                <td class="nowrap-cell" style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix}</span></td>
+                                <td class="nowrap-cell"style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_fix2}</span></td>
+                                <td class="nowrap-cell"style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable}</span></td>
+                                <td class="nowrap-cell"style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable2}</span></td>
+                                <td style="width: 100px; font-size: 12px;">${client.Email}</td>
+                                <td class="nowrap-cell"style="width: 100px; font-size: 12px;">${client.Fax}</td>
                                 <td style="width: 100px; font-size: 12px;">${client.Commentaire}</td>
 
                             </tr>`;

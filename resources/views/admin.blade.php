@@ -220,6 +220,28 @@
                 color: red;
                 margin-left: 5px;
             }
+
+            /* CSS for the entire table */
+            #client-table {
+                width: 100%;
+                border-collapse: collapse;
+                table-layout: auto;
+                /* Adjust the column widths dynamically based on content */
+            }
+
+            /* CSS for the table header cells */
+            #client-table th {
+                background-color: #f2f2f2;
+                text-align: left;
+                padding: 8px;
+            }
+
+            /* CSS for the table data cells */
+            #client-table td {
+                padding: 8px;
+                white-space: nowrap;
+                /* Prevent the content from wrapping */
+            }
         </style>
     </head>
 
@@ -256,7 +278,7 @@
                     </label>
                 </div>
                 <br>
-                <button class="open-modal-btn" id="open-modal-btn">Add Client</button>
+                <button class="open-modal-btn" id="open-modal-btn">Ajouter Client</button>
                 <br>
                 <h2> <b>Client List</b></h2>
                 <br>
@@ -300,7 +322,7 @@
         <!-- Modal form of add button -->
         <div class="modal-overlay" id="add-modal">
             <div class="modal-content">
-                <h2><b>Add Client</b></h2>
+                <h2><b>Ajouter Client</b></h2>
                 <br>
                 <form id="addClientForm" method="post" action="/gestion/add_client" class="form">
                     @csrf
@@ -372,7 +394,7 @@
                             <textarea name="commentaire" id="commentaire" rows="4"></textarea>
                         </div>
                     </div>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Soumettre</button>
                 </form>
             </div>
         </div>
@@ -380,7 +402,7 @@
         <!-- Modal form of edit button -->
         <div class="modal-overlay" id="edit-modal">
             <div class="modal-content">
-                <h2><b>Edit Client</b></h2>
+                <h2><b>Modifier Client</b></h2>
                 <br>
                 <form id="editClientForm" method="post" action="/gestion/update_client" class="form">
                     @csrf
@@ -681,7 +703,6 @@
 
                             // Populate form fields with client data
                             $('#editNom').val(clientData.Nom);
-                            $('#editSociete').val(clientData.Societe);
                             $('#editVille').val(clientData.Ville);
                             $('#editPays').val(clientData.Pays);
                             $('#editTelFixe').val(clientData.Tel_fix);

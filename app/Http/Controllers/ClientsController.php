@@ -128,7 +128,6 @@ class ClientsController extends Controller
         $client = Clients::where('id', $id)->first();
         $client->Nom = request('editNom');
         $client->Prénom = request('editPrenom');
-        $client->Societe = request('editSociete');
         $client->Adresse = request('editAdresse');
         $client->Ville = request('editVille');
         $client->Email = request('editEmail');
