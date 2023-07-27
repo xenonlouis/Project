@@ -8,7 +8,7 @@
 
     <head>
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Client List</title>
+        <title>Liste des Clients</title>
         <style>
             body {
                 background-color: whitesmoke;
@@ -148,7 +148,7 @@
                     </label>
                 </div>
                 <br>
-                <h2> <b>Client List </b></h2>
+                <h2> <b>Liste des Clients </b></h2>
                 <br>
                 <table>
                     <thead>

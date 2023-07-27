@@ -280,7 +280,7 @@
                 <br>
                 <button class="open-modal-btn" id="open-modal-btn">Ajouter Client</button>
                 <br>
-                <h2> <b>Client List</b></h2>
+                <h2> <b>Liste des Clients</b></h2>
                 <br>
                 <table>
                     <thead>

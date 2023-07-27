@@ -4,7 +4,7 @@
 
     <head>
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Client List</title>
+        <title>Liste des Employés</title>
         <style>
             body {
                 background-color: whitesmoke;
@@ -84,7 +84,7 @@
         </div>
         <div class="container">
             <div class="list">
-                <h2> <b>Employes List </b></h2>
+                <h2> <b>Liste des Employés</b></h2>
                 <br>
                 <table>
                     <thead>
