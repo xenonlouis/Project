@@ -65,6 +65,15 @@ class ClientsController extends Controller
 
 
             $clients = $queryBuilder->get();
+
+            $clients = $clients->map(function ($client) {
+                foreach ($client->getAttributes() as $key => $value) {
+                    if ($value === null) {
+                        $client->$key = 'vide';
+                    }
+                }
+                return $client;
+            });
             return response()->json($clients);
         } else {
 
@@ -77,6 +86,14 @@ class ClientsController extends Controller
                 ->orWhere('Email', 'LIKE', '%' . $query . '%')
                 ->orWhere('Position', 'LIKE', '%' . $query . '%')
                 ->get();
+            $clients = $clients->map(function ($client) {
+                foreach ($client->getAttributes() as $key => $value) {
+                    if ($value === null) {
+                        $client->$key = 'vide';
+                    }
+                }
+                return $client;
+            });
             return response()->json($clients);
         }
     }

@@ -159,10 +159,10 @@
                         <th>Adresse</th>
                         <th>Position</th>
                         <th>Ville</th>
-                        <th>Tel_fix</th>
-                        <th>Tel_fix2</th>
-                        <th>Tel_Portable</th>
-                        <th>Tel_Portable2</th>
+                        <th>TEL1</th>
+                        <th>TEL2</th>
+                        <th>PORTABLE1</th>
+                        <th>PORTABLE2</th>
                         <th>Email</th>
                         <th>Fax</th>
                         <th>Commentaire</th>
@@ -227,7 +227,7 @@
                                 <td class="nowrap-cell"style="width: 100px; font-size: 12px;"><span class="highlight">${client.Tel_Portable2}</span></td>
                                 <td style="width: 100px; font-size: 12px;">${client.Email}</td>
                                 <td class="nowrap-cell"style="width: 100px; font-size: 12px;">${client.Fax}</td>
-                                <td style="width: 100px; font-size: 12px;">${client.Commentaire}</td>
+                                <td style="width: 100px; font-size: 12px; white-space: pre-wrap;">${client.Commentaire}</td>
 
                             </tr>`;
                             });

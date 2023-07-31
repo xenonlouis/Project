@@ -288,10 +288,10 @@
                             <th>Intitule</th>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Tel_fix</th>
-                            <th>Tel_fix2</th>
-                            <th>Tel_Portable</th>
-                            <th>Tel_Portable2</th>
+                            <th>TEL1</th>
+                            <th>TEL2</th>
+                            <th>PORTABLE1</th>
+                            <th>PORTABLE2</th>
                             <th>Fax</th>
                             <th>Actions</th>
                         </tr>
@@ -408,7 +408,7 @@
                     @csrf
                     <div class="form-row">
                         <div class="form-column">
-                            <label for="editIntitule">Intitulé</label>
+                            <label for="editIntitule">Intitulé<span class="required">*</span></label>
                             <select name="editIntitule" id="editIntitule" required>
                                 <option value="Mr">Mr</option>
                                 <option value="Mme">Mme</option>
@@ -474,7 +474,7 @@
                             <textarea name="editCommentaire" id="editCommentaire" rows="4"></textarea>
                         </div>
                     </div>
-                    <button type="submit">Update</button>
+                    <button type="submit">Sousmettre</button>
                     <input type="hidden" id="clientId" name="clientId" />
                 </form>
             </div>
